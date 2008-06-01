@@ -1,5 +1,5 @@
 category: Graphics Libs
-requires: cygwin libX11_6 libXext6 libbz2_1 libfreetype26 libgif4 libid3tag libjpeg62 libpng12 libtiff5 zlib
+requires: cygwin libX11_6 libXext6 libbz2_1 libfreetype26 libgif4 libid3tag0 libjpeg62 libpng12 libtiff5 zlib
 external-source: imlib2
 sdesc: "Image loading and conversion library (runtime)"
 ldesc: "This is the Imlib 2 library - a library that does image file 
