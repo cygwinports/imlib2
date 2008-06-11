@@ -1,0 +1,134 @@
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4~' -x aclocal.m4t -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x '*config.h.in' -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x libtool.m4 -x ltoptions.m4 -x ltsugar.m4 -x ltversion.m4 -x 'lt~obsolete.m4' -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x config.rpath -x aclocal.m4 -x Makefile.in -x makefile.in -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/imlib2-1.4.1/src/lib/Makefile.am src/imlib2-1.4.1/src/lib/Makefile.am
+--- origsrc/imlib2-1.4.1/src/lib/Makefile.am	2008-06-05 22:42:29.000000000 -0500
++++ src/imlib2-1.4.1/src/lib/Makefile.am	2008-06-10 23:39:01.140625000 -0500
+@@ -98,5 +98,5 @@
+ libImlib2_la_DEPENDENCIES = $(top_builddir)/config.h
+ endif
+ endif
+-libImlib2_la_LDFLAGS      = -version-info @lt_version@
++libImlib2_la_LDFLAGS      = -version-info @lt_version@ -no-undefined
+ 
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4~' -x aclocal.m4t -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x '*config.h.in' -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x libtool.m4 -x ltoptions.m4 -x ltsugar.m4 -x ltversion.m4 -x 'lt~obsolete.m4' -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x config.rpath -x aclocal.m4 -x Makefile.in -x makefile.in -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/imlib2-1.4.1/src/lib/asm.h src/imlib2-1.4.1/src/lib/asm.h
+--- origsrc/imlib2-1.4.1/src/lib/asm.h	2007-04-09 07:55:28.000000000 -0500
++++ src/imlib2-1.4.1/src/lib/asm.h	2008-06-10 23:39:11.203125000 -0500
+@@ -1,7 +1,7 @@
+ #ifndef __ASM_H
+ #define __ASM_H
+ 
+-#ifdef __EMX__
++#if defined(__EMX__) || defined(__CYGWIN__)
+ /* Due to strange behaviour of as.exe we use this macros */
+ /* For all OS/2 coders - please use PGCC to compile this code */
+ # define PR_(sym) ___##sym
+@@ -15,6 +15,13 @@
+ # define HIDDEN_(sym)
+ #endif
+ 
++#ifdef __CYGWIN__
++#define FN_(sym) \
++	.global PR_(sym); \
++	HIDDEN_(sym);
++#define SIZE(sym) \
++	.align 8;
++#else /* __CYGWIN__ */
+ #define FN_(sym) \
+ 	.global PR_(sym); \
+ 	HIDDEN_(sym); \
+@@ -22,5 +29,6 @@
+ #define SIZE(sym) \
+ 	.size PR_(sym),.-PR_(sym); \
+ 	.align 8;
++#endif
+ 
+ #endif /* __ASM_H */
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4~' -x aclocal.m4t -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x '*config.h.in' -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x libtool.m4 -x ltoptions.m4 -x ltsugar.m4 -x ltversion.m4 -x 'lt~obsolete.m4' -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x config.rpath -x aclocal.m4 -x Makefile.in -x makefile.in -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/imlib2-1.4.1/src/modules/filters/Makefile.am src/imlib2-1.4.1/src/modules/filters/Makefile.am
+--- origsrc/imlib2-1.4.1/src/modules/filters/Makefile.am	2007-04-09 07:55:29.000000000 -0500
++++ src/imlib2-1.4.1/src/modules/filters/Makefile.am	2008-06-10 23:39:11.218750000 -0500
+@@ -13,14 +13,14 @@
+ EXTRA_DIST = filter_common.h
+ 
+ testfilter_la_SOURCES = filter_test.c
+-testfilter_la_LDFLAGS = -module -avoid-version
++testfilter_la_LDFLAGS = -module -avoid-version -no-undefined
+ testfilter_la_LIBADD  = $(top_builddir)/src/lib/libImlib2.la
+ 
+ bumpmap_la_SOURCES    = filter_bumpmap.c
+-bumpmap_la_LDFLAGS    = -module -avoid-version
++bumpmap_la_LDFLAGS    = -module -avoid-version -no-undefined
+ bumpmap_la_LIBADD     = $(top_builddir)/src/lib/libImlib2.la
+ 
+ colormod_la_SOURCES   = filter_colormod.c
+-colormod_la_LDFLAGS   = -module -avoid-version
++colormod_la_LDFLAGS   = -module -avoid-version -no-undefined
+ colormod_la_LIBADD    = $(top_builddir)/src/lib/libImlib2.la
+ 
+diff -urN -x CYGWIN-PATCHES -x 'aclocal.m4~' -x aclocal.m4t -x autom4te.cache -x config.cache -x config.log -x config.status -x config.h -x '*config.h.in' -x ABOUT-NLS -x Makefile.in.in -x Makevars.template -x '*SlackBuild*' -x '*.egg-info' -x '*.class' -x '*.pyc' -x '*.mo' -x '*.gmo' -x '*.orig' -x '*.rej' -x '*.spec' -x '*.temp' -x '*~' -x '*.stackdump' -x COPYING -x INSTALL -x compile -x config-ml.in -x config.guess -x config.sub -x depcomp -x elisp-comp -x install-sh -x libtool.m4 -x ltoptions.m4 -x ltsugar.m4 -x ltversion.m4 -x 'lt~obsolete.m4' -x ltmain.sh -x mdate-sh -x missing -x mkinstalldirs -x py-compile -x symlink-tree -x texinfo.tex -x ylwrap -x config.rpath -x aclocal.m4 -x Makefile.in -x makefile.in -x configure -x omf.make -x xmldocs.make -x gnome-doc-utils.make -x gnome-doc-utils.m4 -x intltool.m4 -x intltool-extract -x intltool-extract.in -x intltool-merge -x intltool-merge.in -x intltool-update -x intltool-update.in origsrc/imlib2-1.4.1/src/modules/loaders/Makefile.am src/imlib2-1.4.1/src/modules/loaders/Makefile.am
+--- origsrc/imlib2-1.4.1/src/modules/loaders/Makefile.am	2007-12-08 23:43:20.000000000 -0600
++++ src/imlib2-1.4.1/src/modules/loaders/Makefile.am	2008-06-10 23:38:25.578125000 -0500
+@@ -49,53 +49,53 @@
+ EXTRA_DIST = loader_common.h
+ 
+ jpeg_la_SOURCES      = loader_jpeg.c
+-jpeg_la_LDFLAGS      = -module -avoid-version
++jpeg_la_LDFLAGS      = -module -avoid-version -no-undefined
+ jpeg_la_LIBADD       = @JPEGLIBS@ $(top_builddir)/src/lib/libImlib2.la
+ 
+ png_la_SOURCES       = loader_png.c
+-png_la_LDFLAGS       = -module -avoid-version
++png_la_LDFLAGS       = -module -avoid-version -no-undefined
+ png_la_LIBADD        = @PNG_LIBS@ $(top_builddir)/src/lib/libImlib2.la
+ 
+ tiff_la_SOURCES      = loader_tiff.c
+-tiff_la_LDFLAGS      = -module -avoid-version
++tiff_la_LDFLAGS      = -module -avoid-version -no-undefined
+ tiff_la_LIBADD       = @TIFFLIBS@ $(top_builddir)/src/lib/libImlib2.la
+ 
+ gif_la_SOURCES       = loader_gif.c
+-gif_la_LDFLAGS       = -module -avoid-version
++gif_la_LDFLAGS       = -module -avoid-version -no-undefined
+ gif_la_LIBADD        = @GIFLIBS@ $(top_builddir)/src/lib/libImlib2.la
+ 
+ zlib_la_SOURCES      = loader_zlib.c
+-zlib_la_LDFLAGS      = -module -avoid-version
++zlib_la_LDFLAGS      = -module -avoid-version -no-undefined
+ zlib_la_LIBADD       = @ZLIBLIBS@ $(top_builddir)/src/lib/libImlib2.la
+ 
+ bz2_la_SOURCES       = loader_bz2.c
+-bz2_la_LDFLAGS       = -module -avoid-version
++bz2_la_LDFLAGS       = -module -avoid-version -no-undefined
+ bz2_la_LIBADD        = @BZ2LIBS@ $(top_builddir)/src/lib/libImlib2.la
+ 
+ id3_la_SOURCES       = loader_id3.c
+-id3_la_LDFLAGS       = -module -avoid-version
++id3_la_LDFLAGS       = -module -avoid-version -no-undefined
+ id3_la_LIBADD        = @ID3LIBS@ $(top_builddir)/src/lib/libImlib2.la
+ 
+ pnm_la_SOURCES       = loader_pnm.c
+-pnm_la_LDFLAGS       = -module -avoid-version
++pnm_la_LDFLAGS       = -module -avoid-version -no-undefined
+ pnm_la_LIBADD        = $(top_builddir)/src/lib/libImlib2.la
+ 
+ argb_la_SOURCES      = loader_argb.c
+-argb_la_LDFLAGS      = -module -avoid-version
++argb_la_LDFLAGS      = -module -avoid-version -no-undefined
+ argb_la_LIBADD       = $(top_builddir)/src/lib/libImlib2.la
+ 
+ bmp_la_SOURCES       = loader_bmp.c
+-bmp_la_LDFLAGS       = -module -avoid-version
++bmp_la_LDFLAGS       = -module -avoid-version -no-undefined
+ bmp_la_LIBADD        = $(top_builddir)/src/lib/libImlib2.la
+ 
+ xpm_la_SOURCES       = loader_xpm.c
+-xpm_la_LDFLAGS       = -module -avoid-version
++xpm_la_LDFLAGS       = -module -avoid-version -no-undefined
+ xpm_la_LIBADD        = $(top_builddir)/src/lib/libImlib2.la
+ 
+ tga_la_SOURCES       = loader_tga.c
+-tga_la_LDFLAGS       = -module -avoid-version
++tga_la_LDFLAGS       = -module -avoid-version -no-undefined
+ tga_la_LIBADD        = $(top_builddir)/src/lib/libImlib2.la
+ 
+ lbm_la_SOURCES       = loader_lbm.c
+-lbm_la_LDFLAGS       = -module -avoid-version
++lbm_la_LDFLAGS       = -module -avoid-version -no-undefined
+ lbm_la_LIBADD        = $(top_builddir)/src/lib/libImlib2.la
