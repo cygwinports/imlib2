@@ -1,0 +1,16 @@
+DESCRIPTION="Enlightenment image loading library"
+HOMEPAGE="http://www.enlightenment.org/"
+SRC_URI="mirror://sourceforge/enlightenment/${P}.tar.gz"
+PATCH_URI="
+	mirror://portage/media-libs/${PN}/files/${P}-CVE-2008-5187.patch
+	1.4.1-no-undefined.patch
+	1.4.1-asm.patch
+"
+
+PKG_NAMES="${PN} lib${PN} lib${PN}-devel"
+imlib2_CONTENTS='usr/bin/*.exe usr/share/'
+libimlib2_CONTENTS="usr/bin/cygImlib2-1.dll usr/lib/${PN}/"
+libimlib2_devel_CONTENTS='usr/bin/*-config usr/include/ usr/lib/lib* usr/lib/pkgconfig/'
+
+CYGCONF_ARGS="--enable-mmx --disable-static"
+DOCS="COPYING-PLAIN"

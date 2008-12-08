@@ -1,0 +1,32 @@
+--- origsrc/imlib2-1.4.1/src/lib/asm.h	2007-04-09 07:55:28.000000000 -0500
++++ src/imlib2-1.4.1/src/lib/asm.h	2008-06-10 23:39:11.203125000 -0500
+@@ -1,7 +1,7 @@
+ #ifndef __ASM_H
+ #define __ASM_H
+ 
+-#ifdef __EMX__
++#if defined(__EMX__) || defined(__CYGWIN__)
+ /* Due to strange behaviour of as.exe we use this macros */
+ /* For all OS/2 coders - please use PGCC to compile this code */
+ # define PR_(sym) ___##sym
+@@ -15,6 +15,13 @@
+ # define HIDDEN_(sym)
+ #endif
+ 
++#ifdef __CYGWIN__
++#define FN_(sym) \
++	.global PR_(sym); \
++	HIDDEN_(sym);
++#define SIZE(sym) \
++	.align 8;
++#else /* __CYGWIN__ */
+ #define FN_(sym) \
+ 	.global PR_(sym); \
+ 	HIDDEN_(sym); \
+@@ -22,5 +29,6 @@
+ #define SIZE(sym) \
+ 	.size PR_(sym),.-PR_(sym); \
+ 	.align 8;
++#endif
+ 
+ #endif /* __ASM_H */
