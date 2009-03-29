@@ -5,12 +5,13 @@ PATCH_URI="
 	mirror://portage/media-libs/${PN}/files/${P}-CVE-2008-5187.patch
 	1.4.1-no-undefined.patch
 	1.4.1-asm.patch
+	1.4.2-gcc4.patch
 "
 
-PKG_NAMES="${PN} lib${PN} lib${PN}-devel"
+PKG_NAMES="${PN} libImlib2_1 libImlib2-devel"
 imlib2_CONTENTS='usr/bin/*.exe usr/share/'
-libimlib2_CONTENTS="usr/bin/cygImlib2-1.dll usr/lib/${PN}/"
-libimlib2_devel_CONTENTS='usr/bin/*-config usr/include/ usr/lib/lib* usr/lib/pkgconfig/'
+libImlib2_1_CONTENTS="usr/bin/cygImlib2-1.dll usr/lib/${PN}/"
+libImlib2_devel_CONTENTS='usr/bin/*-config usr/include/ usr/lib/lib* usr/lib/pkgconfig/'
 
 CYGCONF_ARGS="--enable-mmx --disable-static"
 DOCS="COPYING-PLAIN"
