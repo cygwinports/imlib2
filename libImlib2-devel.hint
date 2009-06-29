@@ -1,5 +1,5 @@
 category: Graphics
-requires: cygwin libImlib2_1 libfreetype-devel libX11-devel libXext-devel
+requires: libImlib2_1 libfreetype-devel libX11-devel libXext-devel
 external-source: imlib2
 sdesc: "Image loading and conversion library (development)"
 ldesc: "This is the Imlib 2 library - a library that does image file 

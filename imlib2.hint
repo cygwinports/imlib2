@@ -1,5 +1,5 @@
 category: Graphics
-requires: cygwin libgcc1 libImlib2_1
+requires: libgcc1 libImlib2_1
 sdesc: "Image loading and conversion library (utilities)"
 ldesc: "This is the Imlib 2 library - a library that does image file 
 loading and saving as well as rendering, manipulation, arbitrary 
