@@ -2,8 +2,7 @@ DESCRIPTION="Enlightenment image loading library"
 HOMEPAGE="http://www.enlightenment.org/"
 SRC_URI="mirror://sourceforge/enlightenment/${P}.tar.gz"
 PATCH_URI="
-	mirror://portage/media-libs/${PN}/files/${P}-CVE-2008-5187.patch
-	1.4.1-no-undefined.patch
+	1.4.4-no-undefined.patch
 	1.4.1-asm.patch
 	1.4.2-gcc4.patch
 "
