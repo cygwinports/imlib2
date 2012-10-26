@@ -1,0 +1,31 @@
+NAME="imlib2"
+VERSION=1.4.5
+RELEASE=2
+CATEGORY="Graphics"
+SUMMARY="Enlightenment image loading library"
+DESCRIPTION="This is the Imlib 2 library - a library that does image file
+loading and saving as well as rendering, manipulation, arbitrary polygon
+support, etc. It does ALL of these operations FAST. Imlib2 also tries to be
+highly intelligent about doing them, so writing naive programs can be done
+easily, without sacrificing speed."
+HOMEPAGE="http://www.enlightenment.org/"
+SRC_URI="mirror://sourceforge/enlightenment/${P}.tar.gz"
+PATCH_URI="
+	1.4.4-no-undefined.patch
+	1.4.1-asm.patch
+	1.4.2-gcc4.patch
+"
+
+PKG_NAMES="${PN} libImlib2_1 libImlib2-devel"
+imlib2_SUMMARY="${SUMMARY% *} utilities"
+imlib2_CONTENTS='usr/bin/*.exe usr/share/'
+libImlib2_1_SUMMARY="${SUMMARY} (runtime)"
+libImlib2_1_CONTENTS="usr/bin/cygImlib2-1.dll usr/lib/${PN}/"
+libImlib2_devel_SUMMARY="${SUMMARY} (development)"
+libImlib2_devel_REQUIRES="libX11-devel"
+libImlib2_devel_CONTENTS='usr/bin/*-config usr/include/ usr/lib/lib* usr/lib/pkgconfig/'
+
+CYGCONF_ARGS="--enable-mmx"
+DOCS="COPYING-PLAIN"
+
+KEEP_LA_FILES="none"
