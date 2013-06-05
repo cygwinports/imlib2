@@ -5,7 +5,7 @@
  #define __ASM_H
  
 -#ifdef __EMX__
-+#if defined(__EMX__) || defined(__CYGWIN__)
++#if defined(__EMX__) || (defined(__CYGWIN__) && defined(__i386__))
  /* Due to strange behaviour of as.exe we use this macros */
  /* For all OS/2 coders - please use PGCC to compile this code */
  # define PR_(sym) ___##sym

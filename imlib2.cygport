@@ -9,14 +9,14 @@ support, etc. It does ALL of these operations FAST. Imlib2 also tries to be
 highly intelligent about doing them, so writing naive programs can be done
 easily, without sacrificing speed."
 HOMEPAGE="http://www.enlightenment.org/"
-SRC_URI="mirror://sourceforge/enlightenment/${P}.tar.gz"
+SRC_URI="mirror://sourceforge/enlightenment/${NAME}-${VERSION}.tar.gz"
 PATCH_URI="
 	1.4.4-no-undefined.patch
 	1.4.1-asm.patch
 	1.4.2-gcc4.patch
 "
 
-PKG_NAMES="${PN} libImlib2_1 libImlib2-devel"
+PKG_NAMES="${NAME} libImlib2_1 libImlib2-devel"
 imlib2_SUMMARY="${SUMMARY% *} utilities"
 imlib2_CONTENTS='usr/bin/*.exe usr/share/'
 libImlib2_1_SUMMARY="${SUMMARY} (runtime)"
@@ -25,7 +25,8 @@ libImlib2_devel_SUMMARY="${SUMMARY} (development)"
 libImlib2_devel_REQUIRES="libX11-devel"
 libImlib2_devel_CONTENTS='usr/bin/*-config usr/include/ usr/lib/lib* usr/lib/pkgconfig/'
 
-CYGCONF_ARGS="--enable-mmx"
+# amd64 asm would require __attribute__((sysv_abi)) everywhere
+CYGCONF_ARGS="${ARCH_i686+--enable-mmx} --disable-amd64"
 DOCS="COPYING-PLAIN"
 
 KEEP_LA_FILES="none"
