@@ -1,7 +1,7 @@
 NAME="imlib2"
-VERSION=1.4.5
-RELEASE=2
-CATEGORY="Graphics"
+VERSION=1.4.6
+RELEASE=1
+CATEGORY="Libs"
 SUMMARY="Enlightenment image loading library"
 DESCRIPTION="This is the Imlib 2 library - a library that does image file
 loading and saving as well as rendering, manipulation, arbitrary polygon
@@ -9,14 +9,15 @@ support, etc. It does ALL of these operations FAST. Imlib2 also tries to be
 highly intelligent about doing them, so writing naive programs can be done
 easily, without sacrificing speed."
 HOMEPAGE="http://www.enlightenment.org/"
-SRC_URI="mirror://sourceforge/enlightenment/${NAME}-${VERSION}.tar.gz"
+SRC_URI="mirror://sourceforge/enlightenment/${NAME}-${VERSION}.tar.bz2"
 PATCH_URI="
-	1.4.4-no-undefined.patch
+	1.4.6-no-undefined.patch
 	1.4.1-asm.patch
 	1.4.2-gcc4.patch
 "
 
 PKG_NAMES="${NAME} libImlib2_1 libImlib2-devel"
+imlib2_CATEGORY="Graphics"
 imlib2_SUMMARY="${SUMMARY% *} utilities"
 imlib2_CONTENTS='usr/bin/*.exe usr/share/'
 libImlib2_1_SUMMARY="${SUMMARY} (runtime)"

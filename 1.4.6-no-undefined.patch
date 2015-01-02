@@ -1,15 +1,15 @@
---- origsrc/imlib2-1.4.4/src/lib/Makefile.am	2010-05-05 13:25:49.000000000 -0500
-+++ src/imlib2-1.4.4/src/lib/Makefile.am	2010-09-07 15:54:21.978875900 -0500
-@@ -95,5 +95,5 @@ libImlib2_la_LIBADD       = @my_libs@
+--- origsrc/imlib2-1.4.6/src/lib/Makefile.am	2013-12-21 04:16:10.000000000 -0600
++++ src/imlib2-1.4.6/src/lib/Makefile.am	2015-01-01 23:02:22.321326200 -0600
+@@ -102,5 +102,5 @@ libImlib2_la_LIBADD       = $(MY_LIBS)
  libImlib2_la_DEPENDENCIES = $(top_builddir)/config.h
  endif
  endif
 -libImlib2_la_LDFLAGS      = -version-info @lt_version@
 +libImlib2_la_LDFLAGS      = -version-info @lt_version@ -no-undefined
  
---- origsrc/imlib2-1.4.4/src/modules/filters/Makefile.am	2010-05-05 13:25:49.000000000 -0500
-+++ src/imlib2-1.4.4/src/modules/filters/Makefile.am	2010-09-07 15:54:45.605227200 -0500
-@@ -13,17 +13,17 @@ pkg_LTLIBRARIES       = testfilter.la bu
+--- origsrc/imlib2-1.4.6/src/modules/filters/Makefile.am	2013-12-21 04:16:10.000000000 -0600
++++ src/imlib2-1.4.6/src/modules/filters/Makefile.am	2015-01-01 23:02:22.326326800 -0600
+@@ -9,17 +9,17 @@ pkg_LTLIBRARIES       = testfilter.la bu
  EXTRA_DIST = filter_common.h
  
  testfilter_la_SOURCES = filter_test.c
@@ -30,9 +30,9 @@
  colormod_la_LIBADD    = $(top_builddir)/src/lib/libImlib2.la
  colormod_la_LIBTOOLFLAGS = --tag=disable-static
  
---- origsrc/imlib2-1.4.4/src/modules/loaders/Makefile.am	2010-05-05 13:25:49.000000000 -0500
-+++ src/imlib2-1.4.4/src/modules/loaders/Makefile.am	2010-09-07 15:54:59.512022700 -0500
-@@ -49,67 +49,67 @@ lbm.la
+--- origsrc/imlib2-1.4.6/src/modules/loaders/Makefile.am	2013-12-21 04:16:10.000000000 -0600
++++ src/imlib2-1.4.6/src/modules/loaders/Makefile.am	2015-01-01 23:02:41.873309000 -0600
+@@ -45,67 +45,67 @@ lbm.la
  EXTRA_DIST = loader_common.h
  
  jpeg_la_SOURCES      = loader_jpeg.c
@@ -42,7 +42,7 @@
  jpeg_la_LIBTOOLFLAGS = --tag=disable-static
  
  png_la_SOURCES       = loader_png.c
- png_la_CPPFLAGS      = @PNG_CFLAGS@
+ png_la_CPPFLAGS      = @PNG_CFLAGS@ $(AM_CPPFLAGS)
 -png_la_LDFLAGS       = -module -avoid-version
 +png_la_LDFLAGS       = -module -avoid-version -no-undefined
  png_la_LIBADD        = @PNG_LIBS@ $(top_builddir)/src/lib/libImlib2.la
