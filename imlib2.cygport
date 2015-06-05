@@ -1,6 +1,6 @@
 NAME="imlib2"
 VERSION=1.4.6
-RELEASE=1
+RELEASE=2
 CATEGORY="Libs"
 SUMMARY="Enlightenment image loading library"
 DESCRIPTION="This is the Imlib 2 library - a library that does image file
@@ -11,6 +11,7 @@ easily, without sacrificing speed."
 HOMEPAGE="http://www.enlightenment.org/"
 SRC_URI="mirror://sourceforge/enlightenment/${NAME}-${VERSION}.tar.bz2"
 PATCH_URI="
+	http://pkgs.fedoraproject.org/cgit/imlib2.git/plain/imlib2-1.4.6-multilib.patch
 	1.4.6-no-undefined.patch
 	1.4.1-asm.patch
 	1.4.2-gcc4.patch
