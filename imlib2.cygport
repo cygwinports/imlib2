@@ -1,6 +1,6 @@
 NAME="imlib2"
-VERSION=1.4.6
-RELEASE=2
+VERSION=1.4.7
+RELEASE=1
 CATEGORY="Libs"
 SUMMARY="Enlightenment image loading library"
 DESCRIPTION="This is the Imlib 2 library - a library that does image file
@@ -11,10 +11,8 @@ easily, without sacrificing speed."
 HOMEPAGE="http://www.enlightenment.org/"
 SRC_URI="mirror://sourceforge/enlightenment/${NAME}-${VERSION}.tar.bz2"
 PATCH_URI="
-	http://pkgs.fedoraproject.org/cgit/imlib2.git/plain/imlib2-1.4.6-multilib.patch
+	http://pkgs.fedoraproject.org/cgit/imlib2.git/plain/imlib2-1.4.7-multilib.patch
 	1.4.6-no-undefined.patch
-	1.4.1-asm.patch
-	1.4.2-gcc4.patch
 "
 
 PKG_NAMES="${NAME} libImlib2_1 libImlib2-devel"
@@ -28,7 +26,7 @@ libImlib2_devel_REQUIRES="libX11-devel"
 libImlib2_devel_CONTENTS='usr/bin/*-config usr/include/ usr/lib/lib* usr/lib/pkgconfig/'
 
 # amd64 asm would require __attribute__((sysv_abi)) everywhere
-CYGCONF_ARGS="${ARCH_i686+--enable-mmx} --disable-amd64"
+CYGCONF_ARGS="--disable-mmx --disable-amd64" # --disable-visibility-hiding"
 DOCS="COPYING-PLAIN"
 
 KEEP_LA_FILES="none"
