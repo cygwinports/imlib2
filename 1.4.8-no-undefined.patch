@@ -1,14 +1,14 @@
---- origsrc/imlib2-1.4.6/src/lib/Makefile.am	2013-12-21 04:16:10.000000000 -0600
-+++ src/imlib2-1.4.6/src/lib/Makefile.am	2015-01-01 23:02:22.321326200 -0600
-@@ -102,5 +102,5 @@ libImlib2_la_LIBADD       = $(MY_LIBS)
+--- origsrc/imlib2-1.4.8/src/lib/Makefile.am	2016-02-09 10:53:27.000000000 -0600
++++ src/imlib2-1.4.8/src/lib/Makefile.am	2016-04-19 01:02:38.835193300 -0500
+@@ -103,5 +103,5 @@ libImlib2_la_LIBADD       = $(MY_LIBS)
  libImlib2_la_DEPENDENCIES = $(top_builddir)/config.h
  endif
  endif
 -libImlib2_la_LDFLAGS      = -version-info @lt_version@
 +libImlib2_la_LDFLAGS      = -version-info @lt_version@ -no-undefined
  
---- origsrc/imlib2-1.4.6/src/modules/filters/Makefile.am	2013-12-21 04:16:10.000000000 -0600
-+++ src/imlib2-1.4.6/src/modules/filters/Makefile.am	2015-01-01 23:02:22.326326800 -0600
+--- origsrc/imlib2-1.4.8/src/modules/filters/Makefile.am	2016-02-09 10:53:27.000000000 -0600
++++ src/imlib2-1.4.8/src/modules/filters/Makefile.am	2016-04-19 01:01:59.765732200 -0500
 @@ -9,17 +9,17 @@ pkg_LTLIBRARIES       = testfilter.la bu
  EXTRA_DIST = filter_common.h
  
@@ -30,9 +30,9 @@
  colormod_la_LIBADD    = $(top_builddir)/src/lib/libImlib2.la
  colormod_la_LIBTOOLFLAGS = --tag=disable-static
  
---- origsrc/imlib2-1.4.6/src/modules/loaders/Makefile.am	2013-12-21 04:16:10.000000000 -0600
-+++ src/imlib2-1.4.6/src/modules/loaders/Makefile.am	2015-01-01 23:02:41.873309000 -0600
-@@ -45,67 +45,67 @@ lbm.la
+--- origsrc/imlib2-1.4.8/src/modules/loaders/Makefile.am	2016-02-07 01:01:40.000000000 -0600
++++ src/imlib2-1.4.8/src/modules/loaders/Makefile.am	2016-04-19 01:02:22.966678300 -0500
+@@ -47,72 +47,72 @@ lbm.la
  EXTRA_DIST = loader_common.h
  
  jpeg_la_SOURCES      = loader_jpeg.c
@@ -53,6 +53,12 @@
 +tiff_la_LDFLAGS      = -module -avoid-version -no-undefined
  tiff_la_LIBADD       = @TIFFLIBS@ $(top_builddir)/src/lib/libImlib2.la
  tiff_la_LIBTOOLFLAGS = --tag=disable-static
+ 
+ ff_la_SOURCES        = loader_ff.c
+-ff_la_LDFLAGS        = -module -avoid-version
++ff_la_LDFLAGS        = -module -avoid-version -no-undefined
+ ff_la_LIBADD         = $(top_builddir)/src/lib/libImlib2.la
+ ff_la_LIBTOOLFLAGS   = --tag=disable-static
  
  gif_la_SOURCES       = loader_gif.c
 -gif_la_LDFLAGS       = -module -avoid-version
