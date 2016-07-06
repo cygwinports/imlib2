@@ -1,5 +1,5 @@
 NAME="imlib2"
-VERSION=1.4.8
+VERSION=1.4.9
 RELEASE=1
 CATEGORY="Libs"
 SUMMARY="Enlightenment image loading library"
@@ -12,8 +12,6 @@ HOMEPAGE="http://www.enlightenment.org/"
 SRC_URI="mirror://sourceforge/enlightenment/${NAME}-${VERSION}.tar.bz2"
 PATCH_URI="
 	http://pkgs.fedoraproject.org/cgit/rpms/imlib2.git/plain/imlib2-1.4.7-multilib.patch
-	http://pkgs.fedoraproject.org/cgit/rpms/imlib2.git/plain/imlib2-1.4.8-fpeerr.patch
-	http://pkgs.fedoraproject.org/cgit/rpms/imlib2.git/plain/imlib2-1.4.8-oob.patch
 	1.4.8-no-undefined.patch
 "
 
