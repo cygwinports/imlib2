@@ -1,5 +1,5 @@
 NAME="imlib2"
-VERSION=1.4.9
+VERSION=1.4.10
 RELEASE=1
 CATEGORY="Libs"
 SUMMARY="Enlightenment image loading library"
